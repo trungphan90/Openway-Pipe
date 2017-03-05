@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><application>
+  <pipe commit_interval="0" name="applicationuploadfile" package="com.openwaygroup.pipe.applicationuploadfile.autogen" version="00.00.01">
+    <db_grants>
+      <set name="default"/>
+    </db_grants>
+  </pipe>
+  <component buffer_class="com.openwaygroup.pipe.applicationuploadfile.autogen.Source" class="pipe.source.filer" name="source" pipe_service="yes" source="yes">
+    <processing_settings break_duplicate_files="no" break_on_format_error="no" check_uniqueness="no" file_code_page="cp1251" read_file_twice="no" register_file="no" send_eof_message="no"/>
+    <format_description line_extract_method="EOL" line_length="0" line_terminator="0D0A">
+      <record enabling_condition="" field_delimiter="" is_mandatory="no" kind="FILE_NAME" name="FileNameRecord" send_to_mapper="no" terminate_last_field="no"/>
+      <record enabling_condition="" field_delimiter="" is_mandatory="no" kind="FILE_HEADER" name="FileHeaderRecord" send_to_mapper="no" terminate_last_field=""/>
+      <record enabling_condition="" field_delimiter="" is_mandatory="no" kind="FILE_TRAILER" name="FileTrailerRecord" send_to_mapper="no" terminate_last_field="no"/>
+      <record enabling_condition="" field_delimiter="" is_mandatory="no" kind="FILE_RECORD" name="FileDataRecord" send_to_mapper="yes" terminate_last_field="">
+        <field field_offset="0" kind="VARIABLE" length_in_file="6" name="institutionCode" value_type="STRING"/>
+        <field field_offset="6" kind="VARIABLE" length_in_file="14" name="applicationNo" value_type="STRING"/>
+        <field field_offset="20" kind="VARIABLE" length_in_file="3" name="productCode" value_type="STRING"/>
+        <field field_offset="23" kind="VARIABLE" length_in_file="1" name="socialStatus" value_type="STRING"/>
+        <field field_offset="24" kind="VARIABLE" length_in_file="1" name="basicCardFlag" value_type="string"/>
+        <field field_offset="25" kind="VARIABLE" length_in_file="22" name="primaryCardNumber" value_type="string"/>
+        <field field_offset="47" kind="VARIABLE" length_in_file="24" name="clientIdOfCompany" value_type="STRING"/>
+        <field field_offset="71" kind="VARIABLE" length_in_file="10" name="title" value_type="string"/>
+        <field field_offset="81" kind="VARIABLE" length_in_file="20" name="familyName" value_type="string"/>
+        <field field_offset="101" kind="VARIABLE" length_in_file="26" name="firstName" value_type="string"/>
+        <field field_offset="127" kind="VARIABLE" length_in_file="26" name="embossedName" value_type="string"/>
+        <field field_offset="153" kind="VARIABLE" length_in_file="8" name="birthdate" value_type="string"/>
+        <field field_offset="161" kind="VARIABLE" length_in_file="5" name="birthCity" value_type="string"/>
+        <field field_offset="166" kind="VARIABLE" length_in_file="3" name="birthCountry" value_type="string"/>
+        <field field_offset="169" kind="VARIABLE" length_in_file="1" name="gender" value_type="string"/>
+        <field field_offset="170" kind="VARIABLE" length_in_file="1" name="vipCode" value_type="string"/>
+        <field field_offset="171" kind="VARIABLE" length_in_file="3" name="nationality" value_type="string"/>
+        <field field_offset="174" kind="VARIABLE" length_in_file="1" name="maritalStatus" value_type="string"/>
+        <field field_offset="175" kind="VARIABLE" length_in_file="2" name="noOfDependents" value_type="string"/>
+        <field field_offset="177" kind="VARIABLE" length_in_file="2" name="education" value_type="STRING"/>
+        <field field_offset="179" kind="VARIABLE" length_in_file="1" name="residenceStatus" value_type="string"/>
+        <field field_offset="180" kind="VARIABLE" length_in_file="45" name="permanentAddress1" value_type="string"/>
+        <field field_offset="225" kind="VARIABLE" length_in_file="45" name="permanentAddress2" value_type="string"/>
+        <field field_offset="270" kind="VARIABLE" length_in_file="45" name="permanentAddress3" value_type="string"/>
+        <field field_offset="315" kind="VARIABLE" length_in_file="45" name="permanentAddress4" value_type="string"/>
+        <field field_offset="360" kind="VARIABLE" length_in_file="5" name="permanentCityCode" value_type="string"/>
+        <field field_offset="365" kind="VARIABLE" length_in_file="10" name="permanentZipCode" value_type="string"/>
+        <field field_offset="375" kind="VARIABLE" length_in_file="3" name="permanentCountryCode" value_type="string"/>
+        <field field_offset="378" kind="VARIABLE" length_in_file="45" name="currentAddress1" value_type="string"/>
+        <field field_offset="423" kind="VARIABLE" length_in_file="45" name="currentAddress2" value_type="string"/>
+        <field field_offset="468" kind="VARIABLE" length_in_file="45" name="currentAddress3" value_type="string"/>
+        <field field_offset="513" kind="VARIABLE" length_in_file="45" name="currentAddress4" value_type="string"/>
+        <field field_offset="558" kind="VARIABLE" length_in_file="5" name="currentCityCode" value_type="string"/>
+        <field field_offset="563" kind="VARIABLE" length_in_file="10" name="currentZipCode" value_type="string"/>
+        <field field_offset="573" kind="VARIABLE" length_in_file="3" name="currentCountryCode" value_type="string"/>
+        <field field_offset="576" kind="VARIABLE" length_in_file="20" name="homePhoneNumber" value_type="string"/>
+        <field field_offset="596" kind="VARIABLE" length_in_file="20" name="mobileNumber" value_type="string"/>
+        <field field_offset="616" kind="VARIABLE" length_in_file="50" name="emailID" value_type="string"/>
+        <field field_offset="666" kind="VARIABLE" length_in_file="1" name="employmentStatus" value_type="string"/>
+        <field field_offset="667" kind="VARIABLE" length_in_file="2" name="employerType" value_type="string"/>
+        <field field_offset="669" kind="VARIABLE" length_in_file="2" name="applicationProfession" value_type="string"/>
+        <field field_offset="671" kind="VARIABLE" length_in_file="40" name="employerName" value_type="string"/>
+        <field field_offset="711" kind="VARIABLE" length_in_file="45" name="emplAddress1" value_type="string"/>
+        <field field_offset="756" kind="VARIABLE" length_in_file="45" name="emplAddress2" value_type="string"/>
+        <field field_offset="801" kind="VARIABLE" length_in_file="45" name="emplAddress3" value_type="string"/>
+        <field field_offset="846" kind="VARIABLE" length_in_file="45" name="emplAddress4" value_type="string"/>
+        <field field_offset="891" kind="VARIABLE" length_in_file="10" name="emplZipCode" value_type="string"/>
+        <field field_offset="901" kind="VARIABLE" length_in_file="5" name="emplCityCode" value_type="string"/>
+        <field field_offset="906" kind="VARIABLE" length_in_file="3" name="emplCountryCode" value_type="string"/>
+        <field field_offset="909" kind="VARIABLE" length_in_file="20" name="officePhoneNumber" value_type="string"/>
+        <field field_offset="929" kind="VARIABLE" length_in_file="12" name="annualIncome" value_type="string"/>
+        <field field_offset="941" kind="VARIABLE" length_in_file="15" name="legalID" value_type="string"/>
+        <field field_offset="956" kind="VARIABLE" length_in_file="2" name="ownedVehicleType" value_type="string"/>
+        <field field_offset="958" kind="VARIABLE" length_in_file="20" name="drivingLicenseNumber" value_type="string"/>
+        <field field_offset="978" kind="VARIABLE" length_in_file="15" name="passportNumber" value_type="string"/>
+        <field field_offset="993" kind="VARIABLE" length_in_file="15" name="placeOfIssueOfPassport" value_type="string"/>
+        <field field_offset="1008" kind="VARIABLE" length_in_file="22" name="existingCardNumber" value_type="string"/>
+        <field field_offset="1030" kind="VARIABLE" length_in_file="2" name="accountInBank" value_type="string"/>
+        <field field_offset="1032" kind="VARIABLE" length_in_file="6" name="accountBranch" value_type="string"/>
+        <field field_offset="1038" kind="VARIABLE" length_in_file="23" name="accountNumber" value_type="string"/>
+        <field field_offset="1061" kind="VARIABLE" length_in_file="20" name="additionalFamilyName" value_type="string"/>
+        <field field_offset="1081" kind="VARIABLE" length_in_file="26" name="secondaryCardName" value_type="string"/>
+        <field field_offset="1107" kind="VARIABLE" length_in_file="30" name="secondaryCardEmbossName" value_type="string"/>
+        <field field_offset="1137" kind="VARIABLE" length_in_file="20" name="secondaryCardRelation" value_type="string"/>
+        <field field_offset="1157" kind="VARIABLE" length_in_file="8" name="additionalBirthdate" value_type="string"/>
+        <field field_offset="1165" kind="VARIABLE" length_in_file="40" name="insuranceNomineeName" value_type="string"/>
+        <field field_offset="1205" kind="VARIABLE" length_in_file="20" name="insuranceNominationRelation" value_type="string"/>
+        <field field_offset="1225" kind="VARIABLE" length_in_file="1" name="applicationStatus" value_type="string"/>
+        <field field_offset="1226" kind="VARIABLE" length_in_file="50" name="remarks" value_type="string"/>
+        <field field_offset="1276" kind="VARIABLE" length_in_file="25" name="motherMaidenName" value_type="string"/>
+        <field field_offset="1301" kind="VARIABLE" length_in_file="1" name="sourceType" value_type="string"/>
+        <field field_offset="1302" kind="VARIABLE" length_in_file="6" name="branchCode" value_type="string"/>
+        <field field_offset="1308" kind="VARIABLE" length_in_file="1" name="issuanceOfAPSSBook" value_type="string"/>
+        <field field_offset="1309" kind="VARIABLE" length_in_file="12" name="creditLimit" value_type="string"/>
+        <field field_offset="1321" kind="VARIABLE" length_in_file="1" name="photocardAppInd" value_type="string"/>
+        <field field_offset="1322" kind="VARIABLE" length_in_file="26" name="embossedLine4" value_type="string"/>
+        <field field_offset="1348" kind="VARIABLE" length_in_file="12" name="cashLimit" value_type="string"/>
+        <field field_offset="1360" kind="VARIABLE" length_in_file="24" name="crAccount" value_type="string"/>
+        <field field_offset="1384" kind="VARIABLE" length_in_file="30" name="applicationType" value_type="string"/>
+        <field field_offset="1414" kind="VARIABLE" length_in_file="2" name="emplDesignation" value_type="string"/>
+        <field field_offset="1416" kind="VARIABLE" length_in_file="50" name="emplDepartment" value_type="string"/>
+        <field field_offset="1466" kind="VARIABLE" length_in_file="2" name="emplCurrentPosition" value_type="string"/>
+        <field field_offset="1468" kind="VARIABLE" length_in_file="1" name="spouseWorkingStatus" value_type="string"/>
+        <field field_offset="1469" kind="VARIABLE" length_in_file="20" name="dematAccountNumber" value_type="string"/>
+        <field field_offset="1489" kind="VARIABLE" length_in_file="12" name="existingCreditCardLimit" value_type="string"/>
+        <field field_offset="1501" kind="VARIABLE" length_in_file="5" name="creditAsPercentOfIncome" value_type="string"/>
+        <field field_offset="1506" kind="VARIABLE" length_in_file="20" name="middleName" value_type="string"/>
+        <field field_offset="1526" kind="VARIABLE" length_in_file="20" name="additionalCardMiddleName" value_type="string"/>
+        <field field_offset="1546" kind="VARIABLE" length_in_file="1" name="additionalGender" value_type="string"/>
+        <field field_offset="1547" kind="VARIABLE" length_in_file="50" name="witnessedBy" value_type="string"/>
+        <field field_offset="1597" kind="VARIABLE" length_in_file="8" name="birthdateNominee" value_type="string"/>
+        <field field_offset="1605" kind="VARIABLE" length_in_file="20" name="referenceEmployeeId" value_type="string"/>
+        <field field_offset="1625" kind="VARIABLE" length_in_file="1" name="referenceMailingAddress" value_type="string"/>
+        <field field_offset="1626" kind="VARIABLE" length_in_file="20" name="emplID" value_type="string"/>
+        <field field_offset="1646" kind="VARIABLE" length_in_file="3" name="cycOffCode" value_type="string"/>
+        <field field_offset="1649" kind="VARIABLE" length_in_file="3" name="tariffCode" value_type="string"/>
+        <field field_offset="1652" kind="VARIABLE" length_in_file="3" name="profileCode" value_type="string"/>
+        <field field_offset="1655" kind="VARIABLE" length_in_file="4" name="ourAccountTenure" value_type="string"/>
+        <field field_offset="1659" kind="VARIABLE" length_in_file="40" name="otherBankName" value_type="string"/>
+        <field field_offset="1699" kind="VARIABLE" length_in_file="1" name="otherAccountType" value_type="string"/>
+        <field field_offset="1700" kind="VARIABLE" length_in_file="24" name="otherAccountNumber" value_type="string"/>
+        <field field_offset="1724" kind="VARIABLE" length_in_file="3" name="otherCreditCardsCount" value_type="string"/>
+        <field field_offset="1727" kind="VARIABLE" length_in_file="40" name="ref1Name" value_type="string"/>
+        <field field_offset="1767" kind="VARIABLE" length_in_file="45" name="ref1Address1" value_type="string"/>
+        <field field_offset="1812" kind="VARIABLE" length_in_file="45" name="ref1Address2" value_type="string"/>
+        <field field_offset="1857" kind="VARIABLE" length_in_file="45" name="ref1Address3" value_type="string"/>
+        <field field_offset="1902" kind="VARIABLE" length_in_file="45" name="ref1Address4" value_type="string"/>
+        <field field_offset="1947" kind="VARIABLE" length_in_file="10" name="ref1ZipCode" value_type="string"/>
+        <field field_offset="1957" kind="VARIABLE" length_in_file="5" name="ref1CityCode" value_type="string"/>
+        <field field_offset="1962" kind="VARIABLE" length_in_file="3" name="ref1CountryCode" value_type="string"/>
+        <field field_offset="1965" kind="VARIABLE" length_in_file="20" name="ref1PhoneNumber" value_type="string"/>
+        <field field_offset="1985" kind="VARIABLE" length_in_file="40" name="otherBankBranch" value_type="string"/>
+        <field field_offset="2025" kind="VARIABLE" length_in_file="15" name="sourceApplicationNo" value_type="string"/>
+        <field field_offset="2040" kind="VARIABLE" length_in_file="15" name="panGirNo" value_type="string"/>
+        <field field_offset="2055" kind="VARIABLE" length_in_file="24" name="clientCode" value_type="string"/>
+        <field field_offset="2079" kind="VARIABLE" length_in_file="22" name="cardNumber" value_type="string"/>
+        <field field_offset="2101" kind="VARIABLE" length_in_file="2" name="age" value_type="string"/>
+        <field field_offset="2103" kind="VARIABLE" length_in_file="10" name="preferences" value_type="string"/>
+        <field field_offset="2113" kind="VARIABLE" length_in_file="4" name="mailingAddressTenure" value_type="string"/>
+        <field field_offset="2117" kind="VARIABLE" length_in_file="4" name="currentJobTenure" value_type="string"/>
+        <field field_offset="2121" kind="VARIABLE" length_in_file="1" name="directDebitFlag" value_type="string"/>
+        <field field_offset="2122" kind="VARIABLE" length_in_file="20" name="directDebitBranch" value_type="string"/>
+        <field field_offset="2142" kind="VARIABLE" length_in_file="50" name="directDebitAccountName" value_type="string"/>
+        <field field_offset="2192" kind="VARIABLE" length_in_file="20" name="directDebitAmountType" value_type="string"/>
+        <field field_offset="2212" kind="VARIABLE" length_in_file="24" name="directDebitAccountNumber" value_type="string"/>
+        <field field_offset="2236" kind="VARIABLE" length_in_file="1" name="directDebitAmountFlag" value_type="string"/>
+        <field field_offset="2237" kind="VARIABLE" length_in_file="3" name="directDebitPercentage" value_type="string"/>
+        <field field_offset="2241" kind="VARIABLE" length_in_file="45" name="deliveryAddress1" value_type="string"/>
+        <field field_offset="2286" kind="VARIABLE" length_in_file="45" name="deliveryAddress2" value_type="string"/>
+        <field field_offset="2331" kind="VARIABLE" length_in_file="45" name="deliveryAddress3" value_type="string"/>
+        <field field_offset="2376" kind="VARIABLE" length_in_file="45" name="deliveryAddress4" value_type="string"/>
+        <field field_offset="2421" kind="VARIABLE" length_in_file="10" name="deliveryZipCode" value_type="string"/>
+        <field field_offset="2431" kind="VARIABLE" length_in_file="5" name="deliveryCityCode" value_type="string"/>
+        <field field_offset="2636" kind="VARIABLE" length_in_file="1" name="statementPrintingRegister" value_type="string"/>
+      </record>
+      <record enabling_condition="" field_delimiter="" is_mandatory="no" kind="SYSTEM" name="System" send_to_mapper="" terminate_last_field=""/>
+    </format_description>
+    <component class="pipe.input_stream.file_stream" error_directory="{$error_dir}" file_mask="*.DAT" log_to_file_info="false" overwrite_processed_files="no" processed_directory="{$processed_dir}" source_directory="{$source_dir}"/>
+  </component>
+  <component buffer_class="com.openwaygroup.pipe.applicationuploadfile.autogen.Way4ApplicationInput" class="pipe.target.xml.writer" commit_on_file_finish="yes" indent="yes" name="way4ApplicationInput" pipe_service="yes" validate="yes">
+    <component class="pipe.writer.stream" encoding="UTF-8">
+      <component class="pipe.output_stream.file_stream" create_empty_files="yes" file_directory="{$output_dir}" file_info_file_type="ACB_PIPE" file_mode="confirm" file_name="application_upload.xml"/>
+    </component>
+  </component>
+  <component buffer_class="com.openwaygroup.pipe.applicationuploadfile.autogen.GetFileSeq" class="pipe.target.sql_select" name="getFileSeq" pipe_service="yes" throw_exception_on_data_not_found="yes">
+    <sql_statement>select (count(*) + 1) FileNumber from file_info f
+where 1 = 1
+and f.creation_date &gt;= trunc(sysdate)
+and f.file_type = 'ACB_PIPE'
+</sql_statement>
+  </component>
+  <component buffer_class="com.openwaygroup.pipe.applicationuploadfile.autogen.CheckExistClient" class="pipe.target.sql_select" name="checkExistClient" pipe_service="yes" throw_exception_on_data_not_found="yes">
+    <sql_statement>SELECT NVL((select cl.short_name from client cl 
+where 1 = 1 
+and cl.amnd_state = 'A'
+and cl.client_number = 
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         <parameter name="client_code" sql_data_type="VARCHAR"/>), 'Empty') shortName,
+NVL((select cl.client_number from client cl 
+where 1 = 1 
+and cl.amnd_state = 'A'
+and cl.client_number = 
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         <parameter name="client_code" sql_data_type="VARCHAR"/>), 'Empty') clientNumber
+from dual
+</sql_statement>
+  </component>
+  <component buffer_class="com.openwaygroup.pipe.applicationuploadfile.autogen.GetProductInfo" class="pipe.target.sql_select" name="getProductInfo" pipe_service="yes" throw_exception_on_data_not_found="yes">
+    <sql_statement>select p.product_group, p.code, p.name from appl_product p
+where 1 = 1
+and p.amnd_state = 'A'
+and ((p.code = 'P' || 
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         <parameter name="product_code" sql_data_type="VARCHAR"/> || 'I') or (p.code = 'P' || 
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         <parameter name="product_code" sql_data_type="VARCHAR"/> || 'L'))
+</sql_statement>
+  </component>
+  <component buffer_class="com.openwaygroup.pipe.applicationuploadfile.autogen.GetInfoFromPrimaryCard" class="pipe.target.sql_select" name="getInfoFromPrimaryCard" pipe_service="yes" throw_exception_on_data_not_found="yes">
+    <sql_statement>select distinct ac2.contract_number as iss_contract_num, cl.client_number, cl.reg_number, cl.short_name 
+from acnt_contract ac1, acnt_contract ac2, client cl
+where 1 = 1
+and ac1.amnd_state = 'A'
+and ac2.amnd_state = 'A'
+and cl.amnd_state = 'A'
+and ac1.acnt_contract__oid = ac2.id
+and ac2.client__id = cl.id
+and ac1.contract_number = 
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         <parameter name="primary_card_no" sql_data_type="VARCHAR"/>
+    </sql_statement>
+  </component>
+  <component buffer_class="com.openwaygroup.pipe.applicationuploadfile.autogen.GetCountry" class="pipe.source.sql_select" name="getCountry" pipe_service="yes">
+    <sql_statement>select c.n_code, c.code, c.name
+from country c
+where 1=1
+and c.amnd_state = 'A'
+order by c.n_code</sql_statement>
+    <sql_select_count_statement/>
+  </component>
+  <component buffer_class="com.openwaygroup.pipe.applicationuploadfile.autogen.CheckExistLiability" class="pipe.target.sql_select" name="checkExistLiability" pipe_service="yes" throw_exception_on_data_not_found="yes">
+    <sql_statement>select nvl((select ac.contract_number from acnt_contract ac, client cl, appl_product p
+            where 1=1
+            and cl.amnd_state = 'A'
+            and ac.amnd_state = 'A'
+            and p.amnd_state = 'A'
+            and cl.id = ac.client__id
+            and ac.product = p.internal_code 
+            and cl.client_number =  
+         <parameter name="client_number" sql_data_type="VARCHAR"/>
+            and p.code = 
+         <parameter name="liability_product" sql_data_type="VARCHAR"/>),'Empty') contract_number from dual
+</sql_statement>
+  </component>
+</application>
