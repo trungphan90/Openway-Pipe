@@ -10,10 +10,7 @@ import com.openwaygroup.application.pipe.impl.stream.FileSkipException;
 import com.openwaygroup.application.pipe.impl.stream.IWrappedInputStream;
 import com.openwaygroup.application.process.registry.PRLogRecord;
 import com.openwaygroup.application.server.ui.ShowDialogParameters;
-import com.openwaygroup.context.Context;
-import com.openwaygroup.owsysdb.pipe.file.FileInfoParameters;
 import com.openwaygroup.owsysdb.process.registry.processlog.ProcessLogRecord;
-import com.openwaygroup.util.log.Logger;
 
 public class Mapper extends com.openwaygroup.pipe.applicationuploadfile.autogen.Mapper {
 
