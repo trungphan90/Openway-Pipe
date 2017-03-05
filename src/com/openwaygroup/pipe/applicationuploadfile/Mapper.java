@@ -13,6 +13,7 @@ import com.openwaygroup.application.server.ui.ShowDialogParameters;
 import com.openwaygroup.context.Context;
 import com.openwaygroup.owsysdb.pipe.file.FileInfoParameters;
 import com.openwaygroup.owsysdb.process.registry.processlog.ProcessLogRecord;
+import com.openwaygroup.util.log.Logger;
 
 public class Mapper extends com.openwaygroup.pipe.applicationuploadfile.autogen.Mapper {
 
@@ -68,8 +69,7 @@ public class Mapper extends com.openwaygroup.pipe.applicationuploadfile.autogen.
 		  issuing_suffix = Context.getMandatoryProperty(pipe.getContext(),"issuing_suffix");
 		  main_suffix = Context.getMandatoryProperty(pipe.getContext(),"main_suffix");
 		  sub_suffix = Context.getMandatoryProperty(pipe.getContext(),"sub_suffix");
- 
-		  
+ 		  
 		  way4ApplicationInput.getFileParameters().setFileName("xadvapl" + strInstitution + "00" + "_" + strFileNumber + "." + strDayOfYear);		  
 		  
 		  //Code for header
@@ -122,7 +122,7 @@ public class Mapper extends com.openwaygroup.pipe.applicationuploadfile.autogen.
    * by the pipe's source. Add your code to handle incoming data here.
    */
   protected void execute() throws Exception {
-	  try{		  
+	  try{
 		  //Get Data from source pipe:
 	  	  String strRegNumber;
 	  	  String prefixCode;
@@ -736,9 +736,13 @@ public class Mapper extends com.openwaygroup.pipe.applicationuploadfile.autogen.
 		  way4ApplicationInput.addElement("ProductGroup",productGroup);
 		  
 		  //Get clientCode, reg number and iss contract no
-		  getInfoFromPrimaryCard.setPrimary_card_no(primaryCardNumber);
-		  getInfoFromPrimaryCard.execute();
+		  getInfoFromPrimaryCard(primaryCardNumber);		  
 		  String clientCode = getInfoFromPrimaryCard.getClientNumber();
+		  if(clientCode == null)
+		  {
+			  way4ApplicationInput.reset();
+			  throw new Exception();
+		  }
 		  String shortName = getInfoFromPrimaryCard.getShortName();
 		  //String regNumber = getInfoFromPrimaryCard.getRegNumber();
 		  String issContractNo = getInfoFromPrimaryCard.getIssContractNum();		  
@@ -810,6 +814,17 @@ public class Mapper extends com.openwaygroup.pipe.applicationuploadfile.autogen.
 	  }
 }
 
+  private void getInfoFromPrimaryCard(String primaryCardNumber) {
+	try{
+		getInfoFromPrimaryCard.setPrimary_card_no(primaryCardNumber);
+		getInfoFromPrimaryCard.execute();		
+	}
+	catch (Exception ex) {
+		processMessage(PRLogRecord.ERROR, "error in getInfoFromPrimaryCard service, no data found with card: " + primaryCardNumber);
+		ex.printStackTrace();
+	}	
+  }
+
   private void createCardApplication(String productCode, String branchCode, String secondaryCardName, String title, String embossedName, String embossedLine4, String basicCardFlag, String applicationNo, String clientIdOfCompany) {
 		// TODO Auto-generated method stub
 		  way4ApplicationInput.addStartElement("Application"); //start of application of card contract
@@ -879,12 +894,6 @@ public class Mapper extends com.openwaygroup.pipe.applicationuploadfile.autogen.
 		  way4ApplicationInput.addFinishElement("Application"); //End application of card	
   }
   
-
-/**
-   * This method will be called at the end of the pipe's execution.
-   * Add your closing code here.
-   */
-  
   private String generateRegNo(String prefixCode) {
 		// TODO Auto-generated method stub
 		  count++;
@@ -897,6 +906,10 @@ public class Mapper extends com.openwaygroup.pipe.applicationuploadfile.autogen.
 		return date.substring(0, 4) + "-" + date.substring(4, 6) + "-" + date.substring(6);
   }
   
+  /**
+   * This method will be called at the end of the pipe's execution.
+   * Add your closing code here.
+   */
   protected void close() throws Exception {
 	  try{		  
 		  way4ApplicationInput.addFinishElement("ApplicationsList");		  
@@ -946,13 +959,13 @@ public class Mapper extends com.openwaygroup.pipe.applicationuploadfile.autogen.
 			int boxType, Long docId) {
 		msg = "[Application Upload]:"+msg;
 		ProcessLogRecord logRecord = new ProcessLogRecord(type, msg, docId);
-
+	
 		try {
 			pipe.log(logRecord);
 		} catch (Exception e) {
 			pipe.cancel();
 		}
-
+	
 		if (isMsgBox) {
 			pipe.showMessageDialog(new ShowDialogParameters(
 					"Application Upload", msg, boxType));
@@ -962,6 +975,6 @@ public class Mapper extends com.openwaygroup.pipe.applicationuploadfile.autogen.
 	protected void skipFile(String errText) throws FileSkipException
 	{
 		processMessage(PRLogRecord.ERROR, errText, true, ShowDialogParameters.ERROR_MESSAGE, null);
-		throw new FileSkipException(IWrappedInputStream.CLOSE_ACTION_REJECT);
+		throw new FileSkipException(IWrappedInputStream.CLOSE_ACTION_REJECT);		
 	}
 }
