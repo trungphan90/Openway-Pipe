@@ -222,9 +222,10 @@ public class Mapper extends com.openwaygroup.pipe.applicationuploadfile.autogen.
 		  String deliveryCityCode = ((source.getDeliveryCityCode() == null) ? "" : source.getDeliveryCityCode().trim());
 		  String statementPrintingRegister = ((source.getStatementPrintingRegister() == null) ? "" : source.getStatementPrintingRegister().trim());
 		  
-		  getProductInfo.setProduct_code(productCode);
-		  getProductInfo.execute();
+		  getProductInfo(productCode);		  
 		  String productGroup = getProductInfo.getProductGroup();
+		  if(productGroup == null)
+			  throw new Exception();
 		  			  
 		  checkExistClient.setClient_code(clientCode);
 		  checkExistClient.execute();		  
@@ -718,7 +719,21 @@ public class Mapper extends com.openwaygroup.pipe.applicationuploadfile.autogen.
 	  }
   }
   
-  private void createSubCardApplicationIssContractExist(String productCode,
+  private void getProductInfo(String productCode) {
+	// TODO Auto-generated method stub
+	try{
+		getProductInfo.setProduct_code(productCode);
+		getProductInfo.execute();
+	}
+	catch (Exception ex)
+	{		
+		processMessage(PRLogRecord.ERROR, "error in getProductInfo service, no data found with product code: " + productCode);
+		way4ApplicationInput.reset();
+		ex.printStackTrace();
+	}
+}
+
+private void createSubCardApplicationIssContractExist(String productCode,
 		String productGroup, String branchCode, String primaryCardNumber, 
 		String secondaryCardName, String title,	String secondaryCardEmbossName, 
 		String embossedLine4, String basicCardFlag, String sourceApplicationNumber, 
@@ -738,11 +753,9 @@ public class Mapper extends com.openwaygroup.pipe.applicationuploadfile.autogen.
 		  //Get clientCode, reg number and iss contract no
 		  getInfoFromPrimaryCard(primaryCardNumber);		  
 		  String clientCode = getInfoFromPrimaryCard.getClientNumber();
-		  if(clientCode == null)
-		  {
-			  way4ApplicationInput.reset();
+		  if(clientCode == null)		 
 			  throw new Exception();
-		  }
+		  
 		  //String shortName = getInfoFromPrimaryCard.getShortName();
 		  String issContractNo = getInfoFromPrimaryCard.getIssContractNum();		  
 		  
@@ -820,6 +833,7 @@ public class Mapper extends com.openwaygroup.pipe.applicationuploadfile.autogen.
 	}
 	catch (Exception ex) {
 		processMessage(PRLogRecord.ERROR, "error in getInfoFromPrimaryCard service, no data found with card: " + primaryCardNumber);
+		way4ApplicationInput.reset();
 		ex.printStackTrace();
 	}	
   }
