@@ -743,8 +743,7 @@ public class Mapper extends com.openwaygroup.pipe.applicationuploadfile.autogen.
 			  way4ApplicationInput.reset();
 			  throw new Exception();
 		  }
-		  String shortName = getInfoFromPrimaryCard.getShortName();
-		  //String regNumber = getInfoFromPrimaryCard.getRegNumber();
+		  //String shortName = getInfoFromPrimaryCard.getShortName();
 		  String issContractNo = getInfoFromPrimaryCard.getIssContractNum();		  
 		  
 		  way4ApplicationInput.addStartElement("ObjectFor");		  
@@ -753,7 +752,7 @@ public class Mapper extends com.openwaygroup.pipe.applicationuploadfile.autogen.
 		  way4ApplicationInput.addStartElement("Client");
 		  way4ApplicationInput.addStartElement("ClientInfo");
 		  way4ApplicationInput.addElement("ClientNumber",clientCode);
-		  way4ApplicationInput.addElement("ShortName",shortName);
+		  //way4ApplicationInput.addElement("ShortName",shortName);
 		  way4ApplicationInput.addFinishElement("ClientInfo");
 		  way4ApplicationInput.addFinishElement("Client");		 
 		  way4ApplicationInput.addFinishElement("ContractIDT");		  
