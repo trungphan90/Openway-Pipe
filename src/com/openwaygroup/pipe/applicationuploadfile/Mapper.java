@@ -504,6 +504,14 @@ public class Mapper extends com.openwaygroup.pipe.applicationuploadfile.autogen.
 				  way4ApplicationInput.addElement("ActionType","Add");
 				  way4ApplicationInput.addStartElement("Data");
 				  way4ApplicationInput.addStartElement("Contract");
+				  
+				  if(!directDebitAccountNumber.equals(""))
+				  {
+					  way4ApplicationInput.addStartElement("ContractIDT");				  
+					  way4ApplicationInput.addElement("RBSNumber",directDebitAccountNumber);
+					  way4ApplicationInput.addFinishElement("ContractIDT");
+				  }
+				  
 				  way4ApplicationInput.addStartElement("Product");
 				  way4ApplicationInput.addElement("ProductCode1", product_prefix + productCode + issuing_suffix);
 				  way4ApplicationInput.addFinishElement("Product");			  			  
@@ -517,8 +525,18 @@ public class Mapper extends com.openwaygroup.pipe.applicationuploadfile.autogen.
 				  way4ApplicationInput.addFinishElement("CreditLimit");
 				  
 				  way4ApplicationInput.addStartElement("AddContractInfo");
-				  way4ApplicationInput.addElement("ADDINFO01", primaryCardNumber); //Thay bang so the chinh
-				  way4ApplicationInput.addElement("ADDINFO03", "");//Payment Min/Full
+				  way4ApplicationInput.addElement("ADDINFO01", primaryCardNumber); 
+				  				  				 
+				  if(directDebitAmountFlag.equals("0"))
+				  {					  
+					  way4ApplicationInput.addElement("ADDINFO03", "M"); //Payment Min/Full
+				  }
+				  else if (directDebitAmountFlag.equals("2"))
+				  {					  
+					  way4ApplicationInput.addElement("ADDINFO03", directDebitPercentage.replaceFirst("^0+(?!$)", "")); //Payment Min/Full
+				  }
+					  
+				  
 				  way4ApplicationInput.addFinishElement("AddContractInfo");
 				  
 				  way4ApplicationInput.addFinishElement("Contract");			  			 
@@ -592,6 +610,14 @@ public class Mapper extends com.openwaygroup.pipe.applicationuploadfile.autogen.
 				  way4ApplicationInput.addElement("ActionType","Add");
 				  way4ApplicationInput.addStartElement("Data");
 				  way4ApplicationInput.addStartElement("Contract");
+				  
+				  if(!directDebitAccountNumber.equals(""))
+				  {
+					  way4ApplicationInput.addStartElement("ContractIDT");				  
+					  way4ApplicationInput.addElement("RBSNumber",directDebitAccountNumber);
+					  way4ApplicationInput.addFinishElement("ContractIDT");
+				  }
+				  
 				  way4ApplicationInput.addStartElement("Product");
 				  way4ApplicationInput.addElement("ProductCode1", product_prefix + productCode + issuing_suffix);
 				  way4ApplicationInput.addFinishElement("Product");			  			  
@@ -605,8 +631,17 @@ public class Mapper extends com.openwaygroup.pipe.applicationuploadfile.autogen.
 				  way4ApplicationInput.addFinishElement("CreditLimit");
 				  
 				  way4ApplicationInput.addStartElement("AddContractInfo");
-				  way4ApplicationInput.addElement("ADDINFO01", primaryCardNumber); //Thay bang so the chinh
-				  way4ApplicationInput.addElement("ADDINFO03", "");//Payment Min/Full
+				  way4ApplicationInput.addElement("ADDINFO01", primaryCardNumber);
+				  
+				  if(directDebitAmountFlag.equals("0"))
+				  {					  
+					  way4ApplicationInput.addElement("ADDINFO03", "M"); //Payment Min/Full
+				  }
+				  else if (directDebitAmountFlag.equals("2"))
+				  {					  
+					  way4ApplicationInput.addElement("ADDINFO03", directDebitPercentage.replaceFirst("^0+(?!$)", "")); //Payment Min/Full
+				  }
+				  
 				  way4ApplicationInput.addFinishElement("AddContractInfo");
 				  
 				  way4ApplicationInput.addFinishElement("Contract");			  			 
@@ -646,7 +681,7 @@ public class Mapper extends com.openwaygroup.pipe.applicationuploadfile.autogen.
 				  way4ApplicationInput.addStartElement("Client");
 				  way4ApplicationInput.addStartElement("ClientInfo");
 				  way4ApplicationInput.addElement("ClientNumber",clientCode);
-				  way4ApplicationInput.addElement("ShortName",existClientShortName);
+				  //way4ApplicationInput.addElement("ShortName",existClientShortName);
 				  way4ApplicationInput.addFinishElement("ClientInfo");
 				  way4ApplicationInput.addFinishElement("Client");
 				  way4ApplicationInput.addFinishElement("ContractIDT");	  
@@ -654,6 +689,14 @@ public class Mapper extends com.openwaygroup.pipe.applicationuploadfile.autogen.
 				  
 				  way4ApplicationInput.addStartElement("Data");
 				  way4ApplicationInput.addStartElement("Contract");
+				  
+				  if(!directDebitAccountNumber.equals(""))
+				  {
+					  way4ApplicationInput.addStartElement("ContractIDT");				  
+					  way4ApplicationInput.addElement("RBSNumber",directDebitAccountNumber);
+					  way4ApplicationInput.addFinishElement("ContractIDT");
+				  }
+				  
 				  way4ApplicationInput.addStartElement("Product");
 				  way4ApplicationInput.addElement("ProductCode1", product_prefix + productCode + issuing_suffix);
 				  way4ApplicationInput.addFinishElement("Product");			  			  
@@ -667,8 +710,17 @@ public class Mapper extends com.openwaygroup.pipe.applicationuploadfile.autogen.
 				  way4ApplicationInput.addFinishElement("CreditLimit");
 				  
 				  way4ApplicationInput.addStartElement("AddContractInfo");
-				  way4ApplicationInput.addElement("ADDINFO01", primaryCardNumber); //Thay bang so the chinh
-				  way4ApplicationInput.addElement("ADDINFO03", "");//Payment Min/Full
+				  way4ApplicationInput.addElement("ADDINFO01", primaryCardNumber);
+				  
+				  if(directDebitAmountFlag.equals("0"))
+				  {					  
+					  way4ApplicationInput.addElement("ADDINFO03", "M"); //Payment Min/Full
+				  }
+				  else if (directDebitAmountFlag.equals("2"))
+				  {					  
+					  way4ApplicationInput.addElement("ADDINFO03", directDebitPercentage.replaceFirst("^0+(?!$)", "")); //Payment Min/Full
+				  }
+				  
 				  way4ApplicationInput.addFinishElement("AddContractInfo");
 				  
 				  way4ApplicationInput.addFinishElement("Contract");			  			 
